@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers =  FileOperator("data5.txt").change_to_integer()
+numbers =  FileOperator("data/data5.txt").change_to_integer()
 index = 1
 result = ""
 for i in range(0, numbers[0]):

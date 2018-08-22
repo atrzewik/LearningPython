@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data16.txt").change_to_integer()
+numbers = FileOperator("data/data16.txt").change_to_integer()
 
 
 class LinearFunction(object):

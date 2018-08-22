@@ -1,4 +1,4 @@
-file = open("data.txt", "r")
+file = open("data/data.txt", "r")
 reade_file = file.read()
 file.close()
 numbers = reade_file.split()

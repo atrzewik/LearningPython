@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data21.txt").change_to_integer()
+numbers = FileOperator("data/data21.txt").change_to_integer()
 
 print(numbers)
 print(type(numbers))
@@ -12,12 +12,12 @@ class Calculations(object):
         self.right_list = data[2:]
 
     def how_many(self):
-        one = self.data_one
-        all = self.right_list
+        one = self.data_one #do wywalenia
+        all = self.right_list   #do wywalenia
         result = ""
-        for i in range(0, one):
+        for i in range(0, one): #one zamienic na self.data_one
             sums = 0
-            for n in all:
+            for n in all:   #all do zamiany jw.
                 if i + 1 == n:
                     sums += 1
             result += " " + str(sums)

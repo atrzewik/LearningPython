@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data18.txt").get_data_splitted_by_separator("\n")
+numbers = FileOperator("data/data18.txt").get_data_splitted_by_separator("\n")
 
 
 class ModularCalculator(object):

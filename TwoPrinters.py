@@ -1,6 +1,6 @@
 from math import ceil
 from FileOperator import FileOperator
-numbers = FileOperator("data22.txt").change_to_integer()
+numbers = FileOperator("data/data22.txt").change_to_integer()
 
 
 class TwoPrinters(object):

@@ -1,6 +1,6 @@
 from FileOperator import FileOperator
 
-numbers = FileOperator("data9.txt").change_to_float()
+numbers = FileOperator("data/data9.txt").change_to_float()
 
 print(numbers)
 

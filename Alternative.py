@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data21.txt").change_to_integer()
+numbers = FileOperator("data/data21.txt").change_to_integer()
 
 
 def how_many(data):
