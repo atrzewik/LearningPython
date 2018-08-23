@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data11.txt").change_to_integer()
+numbers = FileOperator("data/data11.txt").change_to_integer()
 
 def triangle_or_not(data):
     index = 1

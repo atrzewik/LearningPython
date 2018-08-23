@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data13.txt").change_to_float()
+numbers = FileOperator("data/data13.txt").change_to_float()
 
 def roliing(data):
     result = ""

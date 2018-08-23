@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data1.txt").get_data_splitted_by_separator()
+numbers = FileOperator("data/data1.txt").get_data_splitted_by_separator()
 print(numbers)
 
 index = 1

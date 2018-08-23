@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data17.txt").change_to_integer()
+numbers = FileOperator("data/data17.txt").change_to_integer()
 
 class Time(object):
     def __init__(self, data):

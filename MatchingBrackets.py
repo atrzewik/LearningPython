@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-characters = FileOperator("data20.txt").get_data_splitted_by_separator("\n")
+characters = FileOperator("data/data20.txt").get_data_splitted_by_separator("\n")
 
 
 def characters_into_string(characters):

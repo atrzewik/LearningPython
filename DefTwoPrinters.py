@@ -1,6 +1,6 @@
 from FileOperator import FileOperator
 
-numbers = FileOperator("data22.txt").change_to_integer()
+numbers = FileOperator("data/data22.txt").change_to_integer()
 
 from math import ceil
 

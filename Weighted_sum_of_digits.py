@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data12.txt").change_to_integer()
+numbers = FileOperator("data/data12.txt").change_to_integer()
 
 def weighted_sum(data):
     weighted = ""

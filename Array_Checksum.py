@@ -1,5 +1,5 @@
 from FileOperator import FileOperator
-numbers = FileOperator("data15.txt").change_to_integer()
+numbers = FileOperator("data/data15.txt").change_to_integer()
 print(numbers)
 
 class Array(object):

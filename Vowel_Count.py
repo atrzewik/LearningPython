@@ -1,5 +1,6 @@
 from FileOperator import FileOperator
-data = FileOperator("data6.txt").get_data_splitted_by_separator("\n")
+
+data = FileOperator("data/data6.txt").get_data_splitted_by_separator("\n")
 index = 1
 for string in data[1:]:
     result = 0
@@ -18,4 +19,4 @@ for string in data[1:]:
             result += 1
     print(result, end=" ")
 
-#or: letter == "a" or letter == "e"...
+# or: letter == "a" or letter == "e"...
