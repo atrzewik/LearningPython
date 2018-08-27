@@ -9,11 +9,10 @@ class MatchingWords(object):
 
     def matching(self):
         words = []
-        letter = self.data
         for i in range(0, 300):
-            word = letter[0]
-            del letter[0]
-            if word in letter:
+            word = self.data[0]
+            del self.data[0]
+            if word in self.data:
                 words.append(word)
         return words
 
@@ -39,4 +38,3 @@ class MatchingWords(object):
 
 
 print(MatchingWords(letters).sorting())
-
