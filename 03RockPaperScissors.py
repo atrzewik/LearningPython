@@ -58,3 +58,4 @@ class RockPaperScissors(object):
 
 
 print(RockPaperScissors(sign).who_wins())
+

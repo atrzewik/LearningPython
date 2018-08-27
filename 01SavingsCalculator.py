@@ -24,3 +24,4 @@ class SavingsCalculator(object):
 
 
 print(SavingsCalculator(numbers).calculator())
+
