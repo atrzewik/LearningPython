@@ -5,13 +5,13 @@ numbers = FileOperator("data/data24.txt").change_to_integer()
 class SavingsCalculator(object):
 
     def __init__(self, data):
-        self.one = data[0]
+        self.number_of_arguments = data[0]
         self.data = data[1:]
 
     def calculator(self):
         index = 0
         result = ""
-        for i in range (0, self.one):
+        for i in range (0, self.number_of_arguments):
             year = 0
             sum = self.data[index]
             while self.data[index+1] > sum :
