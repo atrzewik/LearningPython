@@ -10,10 +10,9 @@ class MatchingWords(object):
     def matching(self):
         words = []
         letter = self.data
-        index = 0
         for i in range(0, 300):
-            word = letter[index]
-            del letter[index]
+            word = letter[0]
+            del letter[0]
             if word in letter:
                 words.append(word)
         return words
@@ -21,10 +20,9 @@ class MatchingWords(object):
     def words(self):
         right_words = []
         letter = self.matching()
-        index = 0
         for i in range(0, len(letter)):
-            word = letter[index]
-            del letter[index]
+            word = letter[0]
+            del letter[0]
             if word in letter:
                 continue
             else:
