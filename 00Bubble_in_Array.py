@@ -38,3 +38,4 @@ class BubbleInArray(object):
 
 
 print(BubbleInArray(numbers).checksum())
+
