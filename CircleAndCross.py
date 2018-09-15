@@ -22,47 +22,41 @@ class Board(object):
         else:
             self.fields[int(row)][int(column)] = sign
 
-    def co_ordinates_of_signs(self, sign):
-        list_of_signs = []
+    def row_winning_condition(self, sign):
         for i in range(self.number_of_fields):
+            count = 0
             for j in range(self.number_of_fields):
                 if self.fields[i][j] == sign:
-                    list_of_signs.append([i, j])
-        return list_of_signs
-
-    def check_winning_condition(self, winning, sign):
-        count = 0
-        for sign in self.co_ordinates_of_signs(sign):
-            if sign in winning:
-                count += 1
-        if count == self.number_of_fields:
-            return True
-        else:
-            return False
-
-    def row_winning_condition(self, sign):
-        winning = []
-        for i in range(self.number_of_fields):
-            winning.append([0, 0 + i])
-        return self.check_winning_condition(winning, sign)
+                    count += 1
+            if count == self.number_of_fields:
+                return True
 
     def column_winning_condition(self, sign):
-        winning = []
         for i in range(self.number_of_fields):
-            winning.append([0 + i, 0])
-        return self.check_winning_condition(winning, sign)
+            count = 0
+            for j in range(self.number_of_fields):
+                if self.fields[j][i] == sign:
+                        count += 1
+            if count == self.number_of_fields:
+                return True
 
     def diagonal_top_condition(self, sign):
-        winning = []
         for i in range(self.number_of_fields):
-            winning.append([0 + i, 0 + (self.number_of_fields - 1) - i])
-        return self.check_winning_condition(winning, sign)
+            count = 0
+            for j in range(self.number_of_fields):
+                if self.fields[j][(self.number_of_fields - 1)-j] == sign:
+                    count += 1
+            if count == self.number_of_fields:
+                return True
 
     def diagonal_down_condition(self, sign):
-        winning = []
         for i in range(self.number_of_fields):
-            winning.append([0 + i, 0 + i])
-        return self.check_winning_condition(winning, sign)
+            count = 0
+            for j in range(self.number_of_fields):
+                if self.fields[j][j] == sign:
+                    count += 1
+            if count == self.number_of_fields:
+                return True
 
     def check_the_winner(self, sign):
         return self.row_winning_condition(sign) or self.column_winning_condition(sign) or self.diagonal_top_condition(
