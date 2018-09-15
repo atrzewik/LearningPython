@@ -4,8 +4,6 @@ class Board(object):
         self.number_of_fields = number_of_fields
         self.capacity = self.calculate_capacity()
         self.fields = []
-        self.circle_list = []
-        self.cross_list = []
         for i in range(number_of_fields):
             self.fields.append(["-"] * number_of_fields)
 
