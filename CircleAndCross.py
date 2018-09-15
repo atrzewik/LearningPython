@@ -23,20 +23,18 @@ class Board(object):
             raise AttributeError("This field %s, %s is busy." % (row, column))
         else:
             self.fields[int(row)][int(column)] = sign
-            if sign == "o":
-                self.circle_list.append([int(row), int(column)])
-            else:
-                self.cross_list.append([int(row), int(column)])
 
-    def list_of_signs(self, sign):
-        if sign == "o":
-            return self.circle_list
-        else:
-            return self.cross_list
+    def co_ordinates_of_signs(self, sign):
+        list_of_signs = []
+        for i in range(self.number_of_fields):
+            for j in range(self.number_of_fields):
+                if self.fields[i][j] == sign:
+                    list_of_signs.append([i, j])
+        return list_of_signs
 
     def check_winning_condition(self, winning, sign):
         count = 0
-        for sign in self.list_of_signs(sign):
+        for sign in self.co_ordinates_of_signs(sign):
             if sign in winning:
                 count += 1
         if count == self.number_of_fields:
