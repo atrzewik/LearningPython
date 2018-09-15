@@ -23,37 +23,38 @@ class Board(object):
             self.fields[int(row)][int(column)] = sign
 
     def row_winning_condition(self, sign):
-        for i in range(self.number_of_fields):
+        for row_number in range(self.number_of_fields):
             count = 0
-            for j in range(self.number_of_fields):
-                if self.fields[i][j] == sign:
+            for column_number in range(self.number_of_fields):
+                if self.fields[row_number][column_number] == sign:
                     count += 1
             if count == self.number_of_fields:
                 return True
 
     def column_winning_condition(self, sign):
-        for i in range(self.number_of_fields):
+        for row_number in range(self.number_of_fields):
             count = 0
-            for j in range(self.number_of_fields):
-                if self.fields[j][i] == sign:
+            for column_number in range(self.number_of_fields):
+                if self.fields[column_number][row_number] == sign:
                         count += 1
             if count == self.number_of_fields:
                 return True
 
     def diagonal_top_condition(self, sign):
-        for i in range(self.number_of_fields):
+        maximum_value_of_column = self.number_of_fields-1
+        for row_number in range(self.number_of_fields):
             count = 0
-            for j in range(self.number_of_fields):
-                if self.fields[j][(self.number_of_fields - 1)-j] == sign:
+            for column_number in range(self.number_of_fields):
+                if self.fields[column_number][maximum_value_of_column-column_number] == sign:
                     count += 1
             if count == self.number_of_fields:
                 return True
 
     def diagonal_down_condition(self, sign):
-        for i in range(self.number_of_fields):
+        for row_number in range(self.number_of_fields):
             count = 0
-            for j in range(self.number_of_fields):
-                if self.fields[j][j] == sign:
+            for column_number in range(self.number_of_fields):
+                if self.fields[column_number][column_number] == sign:
                     count += 1
             if count == self.number_of_fields:
                 return True
