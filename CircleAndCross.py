@@ -1,12 +1,11 @@
-from time import sleep
-
-
 class Board(object):
 
     def __init__(self, number_of_fields):
         self.number_of_fields = number_of_fields
         self.capacity = self.calculate_capacity()
         self.fields = []
+        self.circle_list = []
+        self.cross_list = []
         for i in range(number_of_fields):
             self.fields.append(["-"] * number_of_fields)
 
@@ -19,59 +18,54 @@ class Board(object):
     def calculate_capacity(self):
         return self.number_of_fields * self.number_of_fields
 
-    def co_ordinates_of_signs(self, sign):
-        list_of_signs = []
-        for i in range(self.number_of_fields):
-            for j in range(self.number_of_fields):
-                if self.fields[i][j] == sign:
-                    list_of_signs.append([i, j])
-        return list_of_signs
-
     def mark_field(self, row, column, sign):
         if self.fields[int(row)][int(column)] != "-":
-            raise AttributeError("This field %d, %d is busy." % (row, column))
+            raise AttributeError("This field %s, %s is busy." % (row, column))
         else:
             self.fields[int(row)][int(column)] = sign
+            if sign == "o":
+                self.circle_list.append([int(row), int(column)])
+            else:
+                self.cross_list.append([int(row), int(column)])
+
+    def list_of_signs(self, sign):
+        if sign == "o":
+            return self.circle_list
+        else:
+            return self.cross_list
 
     def check_winning_condition(self, winning, sign):
-        list_of_signs = self.co_ordinates_of_signs(sign)
-        for i in range(len(list_of_signs)):
-            for j in range(2):
-                count = 0
-                for sign in list_of_signs:
-                    if sign in winning:
-                        count += 1
-                if count == self.number_of_fields:
-                    return True
-                else:
-                    return False
+        count = 0
+        for sign in self.list_of_signs(sign):
+            if sign in winning:
+                count += 1
+        if count == self.number_of_fields:
+            return True
+        else:
+            return False
 
     def row_winning_condition(self, sign):
         winning = []
-        x, y = 0, 0
         for i in range(self.number_of_fields):
-            winning.append([x, y + i])
+            winning.append([0, 0 + i])
         return self.check_winning_condition(winning, sign)
 
     def column_winning_condition(self, sign):
         winning = []
-        x, y = 0, 0
         for i in range(self.number_of_fields):
-            winning.append([x + i, y])
+            winning.append([0 + i, 0])
         return self.check_winning_condition(winning, sign)
 
     def diagonal_top_condition(self, sign):
         winning = []
-        x, y = 0, 0
         for i in range(self.number_of_fields):
-            winning.append([x + i, y + (self.number_of_fields - 1) - i])
+            winning.append([0 + i, 0 + (self.number_of_fields - 1) - i])
         return self.check_winning_condition(winning, sign)
 
     def diagonal_down_condition(self, sign):
         winning = []
-        x, y = 0, 0
         for i in range(self.number_of_fields):
-            winning.append([x + i, y + i])
+            winning.append([0 + i, 0 + i])
         return self.check_winning_condition(winning, sign)
 
     def check_the_winner(self, sign):
