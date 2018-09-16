@@ -35,10 +35,10 @@ class Board(object):
                 return True
 
     def column_winning_condition(self, sign):
-        for row_number in range(self.number_of_fields):
+        for column_number in range(self.number_of_fields):
             count = 0
-            for column_number in range(self.number_of_fields):
-                if self.fields[column_number][row_number] == sign:
+            for row_number in range(self.number_of_fields):
+                if self.fields[row_number][column_number] == sign:
                         count += 1
             if count == self.number_of_fields:
                 return True
@@ -70,7 +70,7 @@ class Game(object):
     def __init__(self):
         self.turn = 0
         print("Hello!", "\n ...")
-        self.board = Board(UserInput().get_number_of_fields())
+        self.board = Board(UserInputProvider().collect_int_in_range_from_user(2, 20, "Please pick number of fields from 2 to 20: "))
         while True:
             print("Turn: ", self.turn)
             print(self.board)
@@ -88,8 +88,9 @@ class Game(object):
 
     def make_move(self):
         sign = self.whose_move()
-        row = UserInput().get_parameters(self.board.number_of_fields, "row", sign)
-        column = UserInput().get_parameters(self.board.number_of_fields, "column", sign)
+        maximum_pick = self.board.number_of_fields - 1
+        row = UserInputProvider().collect_int_in_range_from_user(0, maximum_pick, "Please, enter your row(0-%s) for %s:" % (maximum_pick, sign))
+        column = UserInputProvider().collect_int_in_range_from_user(0, maximum_pick, "Please, enter your column(0-%s) for %s:" % (maximum_pick, sign))
         try:
             self.board.mark_field(row, column, sign)
         except AttributeError:
@@ -103,59 +104,8 @@ class Game(object):
             print("The winner is %s" % sign)
             return False
         elif self.turn == self.board.capacity:
-            print("Remis!")
+            print("Draw!")
             return False
         else:
             return True
 
-
-print(Game())
-
-# def test_winning_condition_row():
-#     number_of_fields = 10
-#     board = Board(number_of_fields)
-#     for column in range(number_of_fields):
-#         board.mark_field(0, column, 'O')
-#     print("ROW CONDITION")
-#     print(board)
-#     assert board.row_winning_condition('O')
-#     print("test_winning_condition_row SUCCESS")
-#
-#
-# def test_winning_condition_column():
-#     number_of_fields = 10
-#     board = Board(number_of_fields)
-#     for row in range(number_of_fields):
-#         board.mark_field(row, 0, 'O')
-#     print("COLUMN CONDITION")
-#     print(board)
-#     assert board.column_winning_condition('O')
-#     print("test_winning_condition_column SUCCESS")
-#
-#
-# def test_winning_condition_diagonal_top():
-#     number_of_fields = 10
-#     board = Board(number_of_fields)
-#     for row in range(number_of_fields):
-#         board.mark_field(row, row, 'O')
-#     print("DIAGONAL TOP CONDITION")
-#     print(board)
-#     assert board.diagonal_down_condition('O')
-#     print("test_winning_condition_diagonal_top SUCCESS")
-#
-#
-# def test_winning_condition_diagonal_down():
-#     number_of_fields = 10
-#     board = Board(number_of_fields)
-#     for column in range(number_of_fields):
-#         board.mark_field((number_of_fields - column - 1), column, 'O')
-#     print("DIAGONAL DOWN CONDITION")
-#     print(board)
-#     assert board.diagonal_top_condition('O')
-#     print("test_winning_condition_diagonal_down SUCCESS")
-#
-#
-# print(test_winning_condition_row())
-# print(test_winning_condition_column())
-# print(test_winning_condition_diagonal_top())
-# print(test_winning_condition_diagonal_down())

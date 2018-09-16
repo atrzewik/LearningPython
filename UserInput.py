@@ -1,48 +1,32 @@
-class UserInput(object):
+class UserInputProvider(object):
 
-    def __init__(self):
-        self.check = CheckingUser()
-
-    def get_number_of_fields(self):
-        number = input("Please pick number of fields from 2 to 20: ")
-        if not self.check.collect_type_from_user(number, int):
-            self.get_number_of_fields()
-        elif not self.check.collect_input_in_range(int(number), 2, 20):
-            self.get_number_of_fields()
+    @staticmethod
+    def collect_int_in_range_from_user(minimum, maximum, message):
+        user_input = UserInputProvider.collect_int_from_user(message)
+        if minimum <= user_input <= maximum:
+            return user_input
         else:
-            return int(number)
+            UserInputProvider.__print_error(
+                "You must input value in range: {} - {}! Please try again: ".format(minimum, maximum))
+            return UserInputProvider.collect_int_in_range_from_user(minimum, maximum, message)
 
-    def get_parameters(self, number_of_fields, parameter, sign):
-        maximum_pick = number_of_fields - 1
-        number = input("Please, enter your %s(0-%s) for %s:" % (parameter, maximum_pick, sign))
-        if not self.check.collect_type_from_user(number, int):
-            self.get_parameters(number_of_fields, parameter, sign)
-        elif not self.check.collect_input_in_range(int(number), 0, maximum_pick):
-            self.get_parameters(number_of_fields, parameter, sign)
-        else:
-            return int(number)
+    @staticmethod
+    def collect_int_from_user(message):
+        return UserInputProvider.__collect_user_input_in_type(message, int)
 
+    @staticmethod
+    def __collect_user_input_in_type(message, input_type):
+        while True:
+            try:
+                return input_type(UserInputProvider.collect_user_input(message))
+            except ValueError:
+                UserInputProvider.__print_error("Input must be {}! Try again: ".format(input_type))
+                continue
 
-class CheckingUser(object):
+    @staticmethod
+    def collect_user_input(message):
+        return input(message)
 
-    def __init__(self):
-        pass
-
-    def collect_type_from_user(self, number, types):
-        try:
-            types(number)
-        except ValueError:
-            print("You give wrong answer's type!")
-            return False
-        else:
-            return True
-
-    def collect_input_in_range(self, number, minimum, maximum):
-        try:
-            if number < minimum or number > maximum:
-                raise ValueError
-        except ValueError:
-            print("You give wrong value!")
-            return False
-        else:
-            return True
+    @staticmethod
+    def __print_error(error_message):
+        print(error_message)
